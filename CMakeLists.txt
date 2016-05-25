@@ -67,7 +67,8 @@ install(TARGETS vtkVRUI
 )
 
 # Install headers
-install(DIRECTORY "${vtkVRUI_SOURCE_DIR}"
+install(DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/"
   DESTINATION include/vtkVRUI
   FILES_MATCHING PATTERN "*.h"
+  PATTERN ".git" EXCLUDE
 )
