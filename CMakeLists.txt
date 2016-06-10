@@ -49,6 +49,7 @@ set(sources
   vvLODAsyncGLObject.cpp
   vvProgressCookie.cpp
   vvProgress.cpp
+  vvReader.cpp
 )
 
 add_library(vtkVRUI STATIC ${sources})
