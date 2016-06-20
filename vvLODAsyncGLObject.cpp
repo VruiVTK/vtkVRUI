@@ -280,6 +280,33 @@ void vvLODAsyncGLObject::syncContextState(const vvApplicationState &appState,
 }
 
 //------------------------------------------------------------------------------
+vvLODAsyncGLObject::LODData *vvLODAsyncGLObject::lodData(LevelOfDetail lod)
+{
+  return m_dataPipelines[static_cast<size_t>(lod)].result;
+}
+
+//------------------------------------------------------------------------------
+const vvLODAsyncGLObject::LODData *
+vvLODAsyncGLObject::lodData(LevelOfDetail lod) const
+{
+  return m_dataPipelines[static_cast<size_t>(lod)].result;
+}
+
+//------------------------------------------------------------------------------
+vvLODAsyncGLObject::DataPipeline *
+vvLODAsyncGLObject::dataPipeline(LevelOfDetail lod)
+{
+  return m_dataPipelines[static_cast<size_t>(lod)].dataPipeline;
+}
+
+//------------------------------------------------------------------------------
+const vvLODAsyncGLObject::DataPipeline *
+vvLODAsyncGLObject::dataPipeline(LevelOfDetail lod) const
+{
+  return m_dataPipelines[static_cast<size_t>(lod)].dataPipeline;
+}
+
+//------------------------------------------------------------------------------
 void vvLODAsyncGLObject::executeWrapper(LevelOfDetail lod,
                                         vvLODAsyncGLObject::DataPipeline *p)
 {

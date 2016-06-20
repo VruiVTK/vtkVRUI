@@ -154,6 +154,21 @@ protected:
   const T& objectState() const { return *static_cast<T*>(m_objState); }
   /** @} */
 
+  /**
+   * This method provides access to the underlying LOD implementations. They
+   * are generally not needed under normal circumstances, but are provided
+   * for completeness. Use with caution. May return nullptr if the requested
+   * level of detail is not used.
+   * @{
+   */
+  LODData* lodData(LevelOfDetail lod);
+  const LODData* lodData(LevelOfDetail lod) const;
+  DataPipeline* dataPipeline(LevelOfDetail lod);
+  const DataPipeline* dataPipeline(LevelOfDetail lod) const;
+  // Render pipelines are omitted, as there may be several depending on the
+  // number of target contexts.
+  /** @} */
+
 private: // vtkLODAsyncGLObject virtual API:
 
   /**
