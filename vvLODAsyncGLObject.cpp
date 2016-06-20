@@ -243,6 +243,24 @@ void vvLODAsyncGLObject::syncContextState(const vvApplicationState &appState,
   DataItem *dataItem = contextData.retrieveDataItem<DataItem>(this);
   assert(dataItem);
 
+  // Do nothing if there is not up-to-date LOD (prevents the dataset from
+  // flickering, since out-of-date data will be shown while we wait).
+  bool hasLive = false;
+  for (const_iterator lod = this->bestToFast(); lod; ++lod)
+    {
+    if (lod->status == LODStatus::UpToDate)
+      {
+      hasLive = true;
+      break;
+      }
+    }
+
+  // Just show old data if nothing is ready:
+  if (!hasLive)
+    {
+    return;
+    }
+
   // Show the best up-to-date LOD:
   bool liveSet = false;
   for (const_iterator lod = this->bestToFast(); lod; ++lod)
