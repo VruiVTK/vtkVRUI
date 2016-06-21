@@ -74,13 +74,13 @@ public:
   /**
    * A pointer to the full resolution data object.
    */
-  vtkDataObject* dataObject() const;
+  virtual vtkDataObject* dataObject() const;
 
   /**
    * A pointer to a reduced version of the full data object. Used for low
    * level of detail renderings.
    */
-  vtkDataObject* reducedDataObject() const;
+  virtual vtkDataObject* reducedDataObject() const;
 
   /**
    * The bounding box for the dataObject().
