@@ -32,6 +32,7 @@ vvProgress::DataItem::~DataItem()
 
 //------------------------------------------------------------------------------
 vvProgress::vvProgress()
+  : m_visible(true)
 {
   m_tprop->SetJustificationToRight();
   m_tprop->SetVerticalJustificationToTop();
@@ -122,7 +123,7 @@ void vvProgress::syncContextState(const vvApplicationState &appState,
   DataItem *dataItem = contextData.retrieveDataItem<DataItem>(this);
   assert(dataItem);
 
-  if (m_text.empty())
+  if (m_text.empty() || !m_visible)
     {
     dataItem->actor->SetVisibility(0);
     return;
@@ -130,4 +131,16 @@ void vvProgress::syncContextState(const vvApplicationState &appState,
 
   dataItem->actor->SetInput(m_text.c_str());
   dataItem->actor->SetVisibility(1);
+}
+
+//------------------------------------------------------------------------------
+bool vvProgress::visible() const
+{
+  return m_visible;
+}
+
+//------------------------------------------------------------------------------
+void vvProgress::setVisible(bool visible)
+{
+  m_visible = visible;
 }

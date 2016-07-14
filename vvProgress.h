@@ -43,6 +43,10 @@ public:
   vvProgress();
   ~vvProgress();
 
+  /** Can be used to hide all progress notifications. */
+  bool visible() const;
+  void setVisible(bool visible);
+
   /**
    * Create a new update notification entry with text @a text and obtain a
    * cookie.
@@ -62,6 +66,7 @@ public:
                                 GLContextData &contextData) const;
 
 private:
+  bool m_visible;
   std::string m_text;
   vtkNew<vtkTextProperty> m_tprop;
   std::vector<vvProgressCookie*> m_entries;
