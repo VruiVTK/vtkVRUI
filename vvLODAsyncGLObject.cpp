@@ -18,8 +18,8 @@
 #include <type_traits>
 
 namespace {
-template <typename T>
-void deleteLODArray(vvLODAsyncGLObject::LODArray<T*> &a)
+template <typename T, size_t N>
+void deleteLODArray(std::array<T*, N> &a) noexcept(true)
 {
   for (T *o: a)
     {
@@ -42,13 +42,6 @@ std::ostream& operator<<(std::ostream &str,
     default:
       return (str << "Invalid");
     }
-}
-
-template <typename T>
-std::ostream& operator<<(std::ostream &str,
-                         const vvLODAsyncGLObject::LODIteratorImpl<T> &iter)
-{
-  return (str << static_cast<vvLODAsyncGLObject::LevelOfDetail>(iter));
 }
 
 } // end anon namespace
@@ -104,7 +97,7 @@ void vvLODAsyncGLObject::init(const vvApplicationState &)
 void vvLODAsyncGLObject::initVvContext(vvContextState &contextState,
                                        GLContextData &contextData) const
 {
-  this->Superclass::initVvContext(contextState, contextData);
+  vvGLObject::initVvContext(contextState, contextData);
 
   assert("Duplicate context initialization detected!" &&
          !contextData.retrieveDataItem<DataItem>(this));
@@ -214,7 +207,7 @@ void vvLODAsyncGLObject::syncApplicationState(const vvApplicationState &state)
 
           std::ostringstream progLabel;
           progLabel << "Updating " << this->progressLabel() << " ("
-                    << lod << ")";
+                    << static_cast<LevelOfDetail>(lod) << ")";
           lod->cookie = state.progress().addEntry(progLabel.str());
           assert("Cookie assigned." && lod->cookie != nullptr);
 
@@ -348,4 +341,9 @@ vvLODAsyncGLObject::DataPipelineManager::~DataPipelineManager()
   delete dataPipeline;
   delete result;
   // Don't free cookie -- these are owned by vvProgress.
+}
+
+//------------------------------------------------------------------------------
+vvLODAsyncGLObject::ObjectState::~ObjectState()
+{
 }

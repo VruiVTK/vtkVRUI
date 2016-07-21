@@ -5,6 +5,7 @@
 
 #include <vtkNew.h>
 
+#include <array>
 #include <future>
 #include <type_traits>
 
@@ -50,6 +51,8 @@ public:
    */
   struct ObjectState
   {
+    virtual ~ObjectState();
+
     /**
      * Sync object with application state. This is the spot to access
      * vvInteractor, etc.
@@ -221,7 +224,7 @@ private: // Private nested classes, implementation  details, etc:
   struct DataItem : public Superclass::DataItem
   {
     DataItem() { renderPipelines.fill(nullptr); }
-    ~DataItem();
+    ~DataItem() override;
 
     RenderPipeline *renderPipeline(LevelOfDetail lod)
     {
