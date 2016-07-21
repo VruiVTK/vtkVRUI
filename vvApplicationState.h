@@ -24,7 +24,7 @@ public:
   using Objects = std::vector<vvGLObject*>;
 
   vvApplicationState();
-  ~vvApplicationState();
+  virtual ~vvApplicationState();
 
   /**
    * Initialize application state. Calls vvGLObject::init on all objects in

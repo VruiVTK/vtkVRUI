@@ -15,6 +15,11 @@ vvGLObject::~vvGLObject()
 }
 
 //------------------------------------------------------------------------------
+void vvGLObject::init(const vvApplicationState &)
+{
+}
+
+//------------------------------------------------------------------------------
 void vvGLObject::initContext(GLContextData &) const
 {
   std::cerr << "vvGLObject::initContext should never be called. Use "

@@ -406,8 +406,8 @@ struct vvLODAsyncGLObject::LODIteratorImpl
   operator bool () const { return !this->isDone(); }
 
   /** Increment/decrement iterator. May skip Invalid LODs. @{ */
-  LODIteratorImpl& operator++ () { this->next(); }
-  LODIteratorImpl& operator-- () { this->prev(); }
+  LODIteratorImpl& operator++ () { this->next(); return *this; }
+  LODIteratorImpl& operator-- () { this->prev(); return *this; }
 
   LODIteratorImpl operator++ (int)
   {

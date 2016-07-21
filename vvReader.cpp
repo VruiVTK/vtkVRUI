@@ -212,4 +212,6 @@ bool vvReader::invalidateReducedData()
     std::cerr << "Reduced data invalidated.\n";
     }
   m_reducedData = nullptr;
+
+  return true;
 }

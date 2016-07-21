@@ -61,7 +61,7 @@ public:
    * Optionally perform post-construction initialization prior to context
    * initialization.
    */
-  virtual void init(const vvApplicationState &appState) { /* no-op */ }
+  virtual void init(const vvApplicationState &appState);
 
   /**
    * Do not use, this will not be executed. Put all context intialization in

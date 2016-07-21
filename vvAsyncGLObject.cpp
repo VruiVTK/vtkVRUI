@@ -80,6 +80,11 @@ void vvAsyncGLObject::syncApplicationState(const vvApplicationState &appState)
 }
 
 //------------------------------------------------------------------------------
+void vvAsyncGLObject::frame(const vvApplicationState &)
+{
+}
+
+//------------------------------------------------------------------------------
 void vvAsyncGLObject::internalExecutePipeline() const
 {
   this->executeDataPipeline();

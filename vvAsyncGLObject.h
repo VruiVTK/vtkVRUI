@@ -55,7 +55,7 @@ private: // Virtual API:
    * NOT modify the data pipeline from this method, as it will be called
    * regardless of whether an asychronous update is happening.
    */
-  virtual void frame(const vvApplicationState &appState) { /* no-op */ }
+  virtual void frame(const vvApplicationState &appState);
 
   /**
    * Update the data pipeline objects here. Ensure that any vtkObjects touched
