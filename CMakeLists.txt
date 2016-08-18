@@ -26,6 +26,7 @@ add_definitions(${VRUI_CFLAGS_OTHER})
 # Find VTK:
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
+include_directories(${VTK_INCLUDE_DIRS})
 
 if(VTK_VERSION VERSION_LESS "6.2")
   message(FATAL_ERROR "Require VTK version 6.2 or higher")
